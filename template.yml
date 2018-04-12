@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless API, Python
+Resources:
+  SearchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: functions.search
+      Runtime: python3.6
+      CodeUri: ./bundle.zip
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /search
+            Method: get
+
+Outputs:
+    ApiURL:
+      Description: "API endpoint URL for Prod environment"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/resource/"
