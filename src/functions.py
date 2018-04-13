@@ -1,14 +1,23 @@
 import json
-import numpy as np
 
 def search(request, context):
-    nparr = np.array([1,2,3])
+    from services.location import search
     return create_response(200, {
-        'nparr': nparr.tolist()
+        'results': search()
     })
+
+def detail(request, context):
+    from services.location import detail
+    return create_response(200, detail())
 
 def create_response(status_code, body):
     return {
         'statusCode': status_code,
         'body': json.dumps(body)
+    }
+
+def error_response(status_code, error):
+    return {
+        'statusCode': status_code,
+        'error': json.dumps(body)
     }

@@ -3,7 +3,8 @@ This is a sample project of how to manage development, testing, packaging and de
 
 
 ## Bundle dependencies 
-You need to bundle 3rd party modules when you add new dependencies.
+You need to bundle 3rd party modules when you add new dependencies.  
+The following command bundles modules into a zip file on docker container.
 
 ```
 make bundle_deps
