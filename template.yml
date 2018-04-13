@@ -5,7 +5,7 @@ Resources:
   SearchFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: functions.search
+      Handler: handlers.api.search
       Runtime: python3.6
       CodeUri: ./bundle.zip
       Events:
@@ -17,7 +17,7 @@ Resources:
   DetailFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: functions.detail
+      Handler: handlers.api.detail
       Runtime: python3.6
       CodeUri: ./bundle.zip
       Events:

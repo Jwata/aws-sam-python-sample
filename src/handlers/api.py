@@ -21,3 +21,4 @@ def error_response(status_code, error):
         'statusCode': status_code,
         'error': json.dumps(body)
     }
+

@@ -4,18 +4,30 @@ Outputs:
   ApiURL:
     Description: API endpoint URL for Prod environment
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/resource/
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
 Resources:
+  DetailFunction:
+    Properties:
+      CodeUri: s3://aws-sam-python-sample/sources/f2d06c4dc499aa9582c94a2bec2a919c
+      Events:
+        GetResource:
+          Properties:
+            Method: get
+            Path: /detail/{id}
+          Type: Api
+      Handler: handlers.api.detail
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
   SearchFunction:
     Properties:
-      CodeUri: s3://aws-sam-python-sample/sources/fc1e0fe5cb853c03740de6ca9f1d2683
+      CodeUri: s3://aws-sam-python-sample/sources/f2d06c4dc499aa9582c94a2bec2a919c
       Events:
         GetResource:
           Properties:
             Method: get
             Path: /search
           Type: Api
-      Handler: functions.search
+      Handler: handlers.api.search
       Runtime: python3.6
     Type: AWS::Serverless::Function
 Transform: AWS::Serverless-2016-10-31
