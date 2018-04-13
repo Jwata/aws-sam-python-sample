@@ -14,6 +14,18 @@ Resources:
           Properties:
             Path: /search
             Method: get
+  DetailFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: functions.detail
+      Runtime: python3.6
+      CodeUri: ./bundle.zip
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /detail/{id}
+            Method: get
 
 Outputs:
     ApiURL:
